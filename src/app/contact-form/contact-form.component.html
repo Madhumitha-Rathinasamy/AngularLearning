@@ -2,8 +2,11 @@
 <form>
     <div class="form-control">
         <label for="firstName"> FirstName </label>
-        <input ngModel name="firstName" #firstName = "ngModel" (change)="log(firstName)" id="firstName" type="text" class="form-control">
-     </div>
+        <input required minlength="3" maxlength="10" ngModel name="firstName" #firstName = "ngModel" (change)="log(firstName)" id="firstName" type="text" class="form-control">
+        <div *ngIf="firstName.errors?.['required'] && firstName.touched">First name is required</div>
+        <div *ngIf="firstName.errors?.['maxlength']">Maximum length is 10</div>
+        <div *ngIf="firstName.errors?.['minlength']">Minimum length is 3</div>
+    </div>
     <div class="form-control">
         <label for="comment"> Comment </label>
         <textarea type="textarea" cols="30px" row="10px" class="form-control"></textarea>
