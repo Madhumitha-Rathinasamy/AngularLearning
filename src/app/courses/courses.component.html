@@ -1,27 +1,16 @@
-<!-- <div [hidden] = "courses.length > 0">
-    No courses
-  </div>
-  <div [hidden] = "courses.length == 0">
-    List of courses
-    <ul>
-        <li *ngFor="let course of courses">
-            {{ course }}
-        </li>
-    </ul>
-  </div> -->
+<button (click)="Add()"> Add </button>
 
-<ul class="nav nav-pills">
-    <li [class.active]="viewMode == 'map'"><a (click)="viewMode = 'map'">Map view</a></li>
-    <li [class.active]="viewMode == 'view'"><a (click)="viewMode = 'list'">List view</a></li>
+<ul>
+    <li *ngFor="let course of courses; even as isEven">
+        <button (click)="OnRemove(course)">Remove</button>
+        <button (click)="OnUpdate(course)">Update</button>
+
+        {{ course.name }} <span *ngIf="isEven; then Even else Odd"></span>
+    </li>
+    <ng-template #Even>
+        This is even
+    </ng-template>
+    <ng-template #Odd>
+        This is odd
+    </ng-template>
 </ul>
-<div [ngSwitch]="viewMode">
-    <div *ngSwitchCase="'map'">
-        Map view content
-    </div>
-    <div *ngSwitchCase="'list'">
-        List view content
-    </div>
-    <div *ngSwitchDefault>
-        something else
-    </div>
-</div>
