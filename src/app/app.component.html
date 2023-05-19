@@ -1,3 +1,21 @@
-<h1>Component</h1>
-<courses></courses>
-<app-contact-form></app-contact-form>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <label>Name:*</label>
+  <input type="text" formControlName="name" />
+
+  <label>Email:*</label>
+  <input type="email" formControlName="email" />
+
+  <label>Product:</label>
+  <input type="text" formControlName="product" />
+
+  <label>Price:</label>
+  <input type="number" formControlName="price" />
+
+  <label>Tax:</label>
+  <input  ngModel="onTax(price)" type="number" formControlName>
+
+
+  <!-- Add more form controls as needed -->
+
+  <button type="submit" [disabled]="myForm.invalid">Submit</button>
+</form>
